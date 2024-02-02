@@ -8,23 +8,23 @@ namespace Module2lesson20
 {
     public static class DataGetter
     {
-        public static int GetIntFromReadKey(string errorMessage = "\nWpisz liczbę całkowitą:")
+        public static int GetIntFromReadKey(string userPrompt = "\nWpisz liczbę całkowitą:")
         {
             int userSelection;
             while (!int.TryParse(Console.ReadKey().KeyChar.ToString(), out userSelection))
             {
-                Console.WriteLine(errorMessage);
+                Console.WriteLine(userPrompt);
             }
             return userSelection;
         }
         
         public static int GetIntFromReadKeyInRange(int lowerLimit, int upperLimit)
         {
-            string errorMessage = $"\nWpisz liczbę całkowitą z zakresu: {lowerLimit} - {upperLimit}";
+            string userPrompt = $"\nWpisz liczbę całkowitą z zakresu: {lowerLimit} - {upperLimit}";
             int userSelection; 
-            while (!IsIntInRange(userSelection = GetIntFromReadKey(errorMessage), lowerLimit, upperLimit))
+            while (!IsIntInRange(userSelection = GetIntFromReadKey(userPrompt), lowerLimit, upperLimit))
             {
-                Console.WriteLine(errorMessage);                
+                Console.WriteLine(userPrompt);                
             }
             return userSelection;
         }
@@ -34,7 +34,7 @@ namespace Module2lesson20
             return (inputInteger >= lowerLimit && inputInteger <= upperLimit);
         }
         
-        public static string getNotEmptyText()
+        public static string GetNotEmptyText()
         {
             string input;
             while (string.IsNullOrEmpty(input = Console.ReadLine()))

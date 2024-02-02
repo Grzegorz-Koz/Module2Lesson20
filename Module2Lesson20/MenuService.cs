@@ -19,21 +19,22 @@ namespace Module2lesson20
     
     internal static class MenuService
     {
-        private static List<Menu> _menus;
-        public static List<MenuItem> mainMenuItems { get;} = new List<MenuItem>()
-            {
-                { new MenuItem(new(){"Add product"})},
-                { new MenuItem(new(){"Remove products",
-                                     "Remove the product(s) with the given name", 
-                                     "Remove products with the given product property value",
-                                     "Remove all products"})},
-                { new MenuItem(new(){"Show product properties"})},
-                { new MenuItem(new(){"List of products",
-                                     "List by product color",
-                                     "List by product size",
-                                     "List all products"})},
-                { new MenuItem(new(){"Exit program"})},
-            };
+        private static List<Menu> _menus;        
+
+        public static List<MenuItem> mainMenuItems { get; } = new List<MenuItem>()
+        {
+            { new MenuItem("Add product", new(){})},
+            { new MenuItem("Remove products",
+                           new() {"Remove the product(s) with the given name",
+                                 "Remove products with the given product property value",
+                                 "Remove all products"})},
+            { new MenuItem("Show product properties", new(){})},
+            { new MenuItem("List of products",
+                           new(){"List by product color",
+                                 "List by product size",
+                                 "List all products"})},
+            { new MenuItem("Exit program", new(){})},
+        };
 
         static MenuService() 
         {
@@ -59,7 +60,7 @@ namespace Module2lesson20
             }
         }                
         
-        public static MenuItem getMenuItemSelection(string menuName)
+        public static MenuItem GetMenuItemSelection(string menuName)
         {
             // Displays menu and returns user selection
             Console.WriteLine("What would you like to do?");
@@ -73,7 +74,7 @@ namespace Module2lesson20
                     numberOfMenuItems = item.MenuItems.Count;
                     foreach (MenuItem menuItem in item.MenuItems)
                     {
-                        Console.WriteLine($"{menuItem.Id}) {menuItem.Item.First()}");                        
+                        Console.WriteLine($"{menuItem.Id}) {menuItem.PositionName}");                        
                     }
                 }
             }            
@@ -82,12 +83,12 @@ namespace Module2lesson20
             return menu.MenuItems[operation - 1];  // Because we count from 0
         }
         
-        public static int getSubMenuItemSelection(MenuItem menuItem, string subMenuTitle)
+        public static int GetSubMenuItemSelection(MenuItem menuItem, string subMenuTitle)
         {
             // Displays submenu and returns user selection
             int subMenuItemId = 1;
             Console.WriteLine($"\n{subMenuTitle}");
-            foreach (String subMenuItem in menuItem.Item.Skip(1))
+            foreach (String subMenuItem in menuItem.SubPositionNames)
             {
                 Console.WriteLine($"{subMenuItemId}) {subMenuItem}");
                 subMenuItemId++;
@@ -97,7 +98,7 @@ namespace Module2lesson20
             return operation;
         }
         
-        public static string getSubMenuTitle(int menuItemId)
+        public static string GetSubMenuTitle(int menuItemId)
         {
             string Title;
             SubMenuTitle subMenuTitle = (SubMenuTitle)menuItemId; // = new SubMenuTitle();

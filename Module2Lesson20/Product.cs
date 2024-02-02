@@ -28,15 +28,11 @@ namespace Module2lesson20
     
     public class Product
     {
-        private static int uniqueKey = 0;
-        public int Id { get; private set; }
         public string Name { get; private set; }
         public ProductColor Color { get; private set; }
         public ProductSize Size { get; private set; }
         public Product(string productName, ProductColor productColor, ProductSize productSize)
         {
-            uniqueKey++;
-            Id = uniqueKey;
             Name = productName;
             Color = productColor;
             Size = productSize;

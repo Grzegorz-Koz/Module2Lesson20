@@ -16,7 +16,7 @@ namespace Module2lesson20
     {
         public static List<Product> Products { get; set; } = new List<Product>();
         
-        private static Enum getEnumSelection(Type enumType)
+        private static Enum GetEnumSelection(Type enumType)
         {
             int counter = 1;
             foreach (var name in Enum.GetNames(enumType))
@@ -33,13 +33,13 @@ namespace Module2lesson20
         {
             Console.WriteLine("\n");
             Console.WriteLine("Enter new product name:");
-            String productName = DataGetter.getNotEmptyText();
+            String productName = DataGetter.GetNotEmptyText();
 
             Console.WriteLine("\nSelect new product color id:");
-            Enum productColor = getEnumSelection(typeof(ProductColor));
+            Enum productColor = GetEnumSelection(typeof(ProductColor));
 
             Console.WriteLine("\n\nSelect new product size id:");
-            Enum productSize = getEnumSelection(typeof(ProductSize));
+            Enum productSize = GetEnumSelection(typeof(ProductSize));
 
             Product product = new Product(productName, (ProductColor)productColor, (ProductSize)productSize);
             
@@ -52,7 +52,7 @@ namespace Module2lesson20
         public static void RemoveProductWithName()
         {
             Console.WriteLine("\n\nEnter product(s) name to remove:");
-            String productName = DataGetter.getNotEmptyText();
+            String productName = DataGetter.GetNotEmptyText();
             int counter = 0;
             List<Product> productsToRemove = new List<Product>();
             foreach (Product product in Products)
@@ -82,7 +82,7 @@ namespace Module2lesson20
         public static void RemoveProductsWithProperty()
         {
             Console.WriteLine("\n\nSelect property you would like to use to remove products:");
-            Enum productProperty = getEnumSelection(typeof(ProductProperty));
+            Enum productProperty = GetEnumSelection(typeof(ProductProperty));
             String commentToPerformAction; 
             switch ((ProductProperty)productProperty)
             {
@@ -103,7 +103,7 @@ namespace Module2lesson20
         private static void RemoveProductsWithPropertyValue(Type enumType, ProductProperty productProperty, String commentToPerformAction)
         {
             Console.WriteLine(commentToPerformAction);
-            Enum enumSelection = getEnumSelection(enumType);
+            Enum enumSelection = GetEnumSelection(enumType);
 
             ProductColor color = 0;
             ProductSize size = 0;
@@ -169,7 +169,7 @@ namespace Module2lesson20
         public static void ShowProductProperties()
         {
             Console.WriteLine("\n\nEnter product(s) name to display properties:");
-            String productName = DataGetter.getNotEmptyText();
+            String productName = DataGetter.GetNotEmptyText();
             Console.WriteLine($"\nProperties of products with the name \'{productName}\':");
             foreach (Product product in Products)
             {
@@ -197,7 +197,7 @@ namespace Module2lesson20
 
             }
             Console.WriteLine($"\n\nSelect product {propertyName} id:");
-            Enum productValue = getEnumSelection(enumType);
+            Enum productValue = GetEnumSelection(enumType);
             string propertyValue = "";
 
             // Color and Size cannot have the value of 0 (because enums start from 1).
